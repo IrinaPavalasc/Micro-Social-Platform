@@ -15,7 +15,7 @@ namespace Micro_Social_Platform.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Radu merge?.";
+            ViewBag.Message = "Your application description page.";
 
             return View();
         }
