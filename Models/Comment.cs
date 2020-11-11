@@ -10,7 +10,9 @@ namespace Micro_Social_Platform.Models
     {
         [Key]
         public int CommentId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "The content is required.")]
+        [MaxLength(240, ErrorMessage = "The content must not exceed 240 characters.")]
+        [DataType(DataType.MultilineText)]
         public string Content { get; set; }
         public DateTime Date { get; set; }
         public int PostId { get; set; }
