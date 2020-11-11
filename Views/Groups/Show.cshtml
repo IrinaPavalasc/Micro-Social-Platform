@@ -7,6 +7,7 @@
 
 <br />
 <a href="/Groups/Index">Return to Groups</a>
+<a href="/Posts/Index">Return to Posts</a>
 <br />
 <a class="btn btn-info" href="/Posts/New/@Model.GroupId">Add New Post to the Group</a>
 <br />
@@ -16,7 +17,24 @@
         Description: <strong>@Model.Description</strong>
         <br />
         <span class="label label-success">@Model.Date</span>
-        <br />
+        <br /><br />
+        @foreach (var post in ViewBag.Posts)
+        {
+        <div class="panel panel-default">
+
+            <div class="panel-heading">@post.Title</div>
+            <div class="panel-body">
+                Content: <strong>@post.Content</strong>
+                <br />
+                <span class="label label-success">@post.Date</span>
+                <br />
+                @* <i class="glyphicon glyphicon-globe"></i> @post.Group.Name*@
+            </div>
+            <div class="panel-footer">
+                <a class=" btn btn-sm btn btn-success" href="/Posts/Show/@post.PostId">Show more</a>
+            </div>
+        </div>
+        }
     </div>
         <div class="panel-footer">
             <a class="btn btn-success pull-left" href="/Groups/Edit/@Model.GroupId">Edit Group</a>

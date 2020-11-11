@@ -33,6 +33,11 @@ namespace Micro_Social_Platform.Controllers
          
             Post post = new Post();
             post.GroupId = id;
+            if (id != null)
+            {
+                Group group = db.Groups.Find(id);
+                ViewBag.gr = group;
+            }
             return View(post);
         }
 
@@ -47,8 +52,11 @@ namespace Micro_Social_Platform.Controllers
                     db.Posts.Add(post);
                     db.SaveChanges();
                     TempData["message"] = "The post has been added.";
+                    if(post.GroupId != null)
+                    {
+                        return RedirectToRoute(new { controller = "Groups", action = "Show", id = post.GroupId });
+                    }
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -85,6 +93,10 @@ namespace Micro_Social_Platform.Controllers
                         post.Content = requestPost.Content;
                         db.SaveChanges();
                         TempData["message"] = "The post has been edited.";
+                        if (post.GroupId != null)
+                        {
+                            return RedirectToRoute(new { controller = "Groups", action = "Show", id = post.GroupId });
+                        }
                         return RedirectToAction("Index");
                     }
                     else

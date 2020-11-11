@@ -1,7 +1,9 @@
 ﻿@model Micro_Social_Platform.Models.Post
 
-
-@Model.Title
+@if (Model.GroupId!=null)
+{
+    @ViewBag.gr.Name
+}
 
 @using (Html.BeginForm(actionName: "New", controllerName: "Posts"))
 

@@ -26,6 +26,13 @@ namespace Micro_Social_Platform.Controllers
         public ActionResult Show(int id)
         {
             Group group = db.Groups.Find(id);
+            if (id != null)
+            {
+                var posts = from pst in db.Posts
+                            where pst.GroupId == id
+                            select pst;
+                ViewBag.Posts = posts;
+            }
             return View(group);
         }
         public ActionResult New()
@@ -98,6 +105,13 @@ namespace Micro_Social_Platform.Controllers
         public ActionResult Delete(int id)
         {
             Group group = db.Groups.Find(id);
+            foreach(Post post in db.Posts)
+            {
+                if(post.GroupId == id)
+                {
+                    db.Posts.Remove(post);
+                }
+            }
             db.Groups.Remove(group);
             db.SaveChanges();
             TempData["message"] = "Grupul a fost sters";
