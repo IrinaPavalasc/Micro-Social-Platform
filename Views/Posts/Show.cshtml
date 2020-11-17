@@ -5,24 +5,22 @@
 
 <br />
 <a href="/Posts/Index">Back to Posts.</a>
-@if(Model.GroupId != null)
+@if (Model.GroupId != null)
 {
     <a href="/Groups/Show/@Model.GroupId">Back to Group.</a>
+    <br />
+    <p>Group name: @Model.Group.Name</p>
 }
 <br />
 <div class="panel panel-default">
-    <div class="panel-heading">@Model.Title</div>
-    <div class="panel-body">
-        Post content: <strong>@Model.Content</strong>
-        <br />
-        <span class="label label-success">@Model.Date</span>
-        <br />
-        <hr>
+    @Html.Partial("PostInfo", Model)
+    <div class="panel-footer">
         <a class="btn btn-success pull-left" href="/Posts/Edit/@Model.PostId">Edit post</a>
         <form method="post" action="/Posts/Delete/@Model.PostId">
             @Html.HttpMethodOverride(HttpVerbs.Delete)
             <button class="btn btn-danger pull-right" type="submit">Delete post</button>
         </form>
+        <div class="clearfix"></div>
     </div>
 </div>
 

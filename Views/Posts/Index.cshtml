@@ -10,19 +10,12 @@
 <a class="btn btn-primary" href="/Posts/New">Add post</a>
 <br />
 
-@foreach (var post in ViewBag.Posts)
-{if (post.GroupId == null)
+@foreach (Micro_Social_Platform.Models.Post post in ViewBag.Posts)
+{
+    if (post.GroupId == null)
     {
         <div class="panel panel-default">
-
-            <div class="panel-heading">@post.Title</div>
-            <div class="panel-body">
-                Content: <strong>@post.Content</strong>
-                <br />
-                <span class="label label-success">@post.Date</span>
-                <br />
-                @* <i class="glyphicon glyphicon-globe"></i> @post.Group.Name*@
-            </div>
+            @Html.Partial("PostInfo", post)
             <div class="panel-footer">
                 <a class=" btn btn-sm btn btn-success" href="/Posts/Show/@post.PostId">Show more</a>
             </div>

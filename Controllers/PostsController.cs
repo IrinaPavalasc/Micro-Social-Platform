@@ -24,9 +24,16 @@ namespace Micro_Social_Platform.Controllers
 
         public ActionResult Show(int id)
         {
-            Post post = db.Posts.Find(id);
+            var posts = db.Posts.Include("Group");
+            Post post = null;
+            foreach(Post p in posts)
+            {
+                if(p.PostId == id)
+                {
+                    post = p;
+                }
+            }
             return View(post);
-
         }
         public ActionResult New(int? id)
         {
