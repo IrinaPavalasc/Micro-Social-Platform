@@ -1,0 +1,40 @@
+﻿@model Micro_Social_Platform.Models.Group
+@{
+    ViewBag.Title = "Group Show";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<br />
+<a href="/Groups/Index">Return to Groups</a>
+<a href="/Posts/Index">Return to Posts</a>
+<br />
+<a class="btn btn-info" href="/Posts/New/@Model.GroupId">Add New Post to the Group</a>
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.Name</div>
+    <div class="panel-body">
+        Description: <strong>@Model.Description</strong>
+        <br />
+        <span class="label label-success">@Model.Date</span>
+        <br /><br />
+        @foreach (Micro_Social_Platform.Models.Post post in ViewBag.Posts)
+        {
+              <div class="panel panel-default">
+                  @Html.Partial("PostInfo", post)
+                  <div class="panel-footer">
+                      <a class=" btn btn-sm btn btn-success" href="/Posts/Show/@post.PostId">Show more</a>
+                  </div>
+              </div>
+        }
+    </div>
+    <div class="panel-footer">
+        <a class="btn btn-success pull-left" href="/Groups/Edit/@Model.GroupId">Edit Group</a>
+        @using (Html.BeginForm(actionName: "Delete", controllerName: "Groups", routeValues: new { id = Model.GroupId }))
+        {
+            @Html.HttpMethodOverride(HttpVerbs.Delete)
+            <button class="btn btn-danger pull-right" type="submit">Delete Group</button>
+        }
+        <div class="clearfix"></div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<h1>@ViewBag.Message</h1>
+<h2>Posts</h2>
+
+<a class="btn btn-primary" href="/Groups/Index">Show groups</a>
+
+<a class="btn btn-primary" href="/Posts/New">Add post</a>
+<br />
+
+@foreach (Micro_Social_Platform.Models.Post post in ViewBag.Posts)
+{
+    if (post.GroupId == null)
+    {
+        <div class="panel panel-default">
+            @Html.Partial("PostInfo", post)
+            <div class="panel-footer">
+                <a class=" btn btn-sm btn btn-success" href="/Posts/Show/@post.PostId">Show more</a>
+            </div>
+        </div>
+    }
+}

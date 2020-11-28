@@ -1,0 +1,32 @@
+﻿@model Micro_Social_Platform.Models.Group
+@{
+    ViewBag.Title = "Groups";
+}
+
+@if (TempData.ContainsKey("message"))
+{
+    <h1>@ViewBag.message</h1>
+}
+
+<h2>@ViewBag.Title</h2>
+<br />
+
+@foreach (Micro_Social_Platform.Models.Group group in ViewBag.Groups)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">@group.Name</div>
+        <div class="panel-body">
+            Description: <strong>@group.Description</strong>
+            <br />
+            <span class="label label-success">@group.Date</span>
+            <br />
+        </div>
+        <div class="panel-footer">
+                <a class=" btn btn-sm btn btn-success" href="/Groups/Show/@group.GroupId">Show Group</a>
+        </div>
+    </div>
+}
+<br />
+<a class="btn btn-primary" href="/Groups/New">Add Group</a>
+<a class="btn btn-primary" href="/Posts/Index">Show Posts</a>
+<br />
