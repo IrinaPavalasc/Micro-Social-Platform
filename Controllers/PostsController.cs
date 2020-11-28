@@ -8,7 +8,7 @@ using System.Web.Mvc;
 namespace Micro_Social_Platform.Controllers
 {
     public class PostsController : Controller
-    {
+    {   //testGitHub
         private Micro_Social_Platform.Models.ApplicationDbContext db = new Micro_Social_Platform.Models.ApplicationDbContext();
         // GET: Posts
         public ActionResult Index()
